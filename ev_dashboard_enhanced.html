@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<p>--bg: #f0f4ff; --surface: #ffffff; --surface2: #f5f7ff; --border:
+#e2e8f7; --teal: #0ea5e9; --green: #10b981; --purple: #8b5cf6; --orange:
+#f59e0b; --red: #ef4444; --pink: #ec4899; --indigo: #6366f1; --cyan:
+#06b6d4; --lime: #84cc16; --text: #0f172a; --muted: #64748b; --radius:
+14px; --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px
+rgba(0,0,0,0.04); --shadow-md: 0 4px 16px rgba(0,0,0,0.08); --shadow-lg:
+0 8px 32px rgba(0,0,0,0.10); } <em>, </em>::before, *::after { margin:0;
+padding:0; box-sizing:border-box; } html { scroll-behavior: smooth; }
+body { font-family:&#39;Inter&#39;,system-ui,sans-serif; background:var(--bg);
+color:var(--text); min-height:100vh; }</p>
+<p>/* HEADER */ .header { background: linear-gradient(135deg, #0f172a
+0%, #1e3a5f 50%, #0c4a6e 100%); padding: 0 36px; display: flex;
+align-items: center; justify-content: space-between; position: sticky;
+top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+min-height: 68px; } .header-brand { display:flex; align-items:center;
+gap:14px; } .header-icon { width:44px; height:44px; background:
+linear-gradient(135deg, #0ea5e9, #8b5cf6); border-radius:12px;
+display:flex; align-items:center; justify-content:center;
+font-size:1.4rem; box-shadow:0 4px 12px rgba(14,165,233,0.4); }
+.header-brand h1 { font-size:1.15rem; font-weight:800; color:#fff;
+letter-spacing:-0.3px; } .header-brand p { font-size:0.75rem;
+color:#94a3b8; margin-top:2px; } .header-right { display:flex;
+align-items:center; gap:10px; } .live-badge { display:flex;
+align-items:center; gap:6px; background:rgba(16,185,129,0.15);
+border:1px solid rgba(16,185,129,0.3); border-radius:999px; padding:6px
+14px; font-size:0.72rem; font-weight:700; color:#10b981;
+letter-spacing:0.5px; text-transform:uppercase; } .live-dot { width:7px;
+height:7px; border-radius:50%; background:#10b981; animation:pulse 2s
+infinite; } @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}
+50%{opacity:0.5;transform:scale(1.3)} }</p>
+<p>/* NAV */ .nav-bar { background:#fff; border-bottom: 1px solid
+var(--border); padding: 0 36px; display:flex; gap:2px; overflow-x:auto;
+position:sticky; top:68px; z-index:999; box-shadow: var(--shadow-sm); }
+.nav-tab { padding:14px 20px; cursor:pointer; border:none;
+background:none; color:var(--muted); font-size:0.85rem; font-weight:600;
+border-bottom:3px solid transparent; transition:all 0.2s;
+white-space:nowrap; display:flex; align-items:center; gap:8px; }
+.nav-tab:hover { color:var(--text); background:var(--surface2); }
+.nav-tab.active { color:var(--indigo);
+border-bottom-color:var(--indigo); } .nav-tab .tab-icon {
+font-size:1rem; }</p>
+<p>/* LAYOUT */ .main { padding:28px 36px; max-width:1700px; margin:0
+auto; } .tab-content { display:none; } .tab-content.active {
+display:block; animation:fadeIn 0.25s ease; } @keyframes fadeIn {
+from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none}
+}</p>
+<p>/* FILTER BAR */ .filter-bar { background:#fff; border:1px solid
+var(--border); border-radius:var(--radius); padding:18px 24px;
+margin-bottom:24px; display:flex; gap:14px; align-items:flex-end;
+flex-wrap:wrap; box-shadow:var(--shadow-sm); } .filter-group {
+display:flex; flex-direction:column; gap:5px; } .filter-label {
+font-size:0.7rem; font-weight:700; color:var(--muted);
+text-transform:uppercase; letter-spacing:0.6px; } .filter-select {
+background:var(--surface2); border:1.5px solid var(--border);
+border-radius:10px; color:var(--text); padding:9px 14px;
+font-size:0.84rem; cursor:pointer; outline:none; transition:border-color
+0.2s; min-width:148px; font-family:inherit; } .filter-select:focus,
+.filter-select:hover { border-color:var(--indigo); } .filter-range-wrap
+{ display:flex; align-items:center; gap:10px; } .filter-range-wrap
+input[type=range] { width:130px; accent-color:var(--indigo);
+cursor:pointer; } .range-val { font-size:0.78rem; color:var(--orange);
+font-weight:700; min-width:44px; } .btn-reset { background:
+linear-gradient(135deg,#fee2e2,#fef3c7); border:1.5px solid #fca5a5;
+color:#dc2626; border-radius:10px; padding:9px 18px; cursor:pointer;
+font-size:0.83rem; font-weight:700; transition:all 0.15s; display:flex;
+align-items:center; gap:6px; font-family:inherit; } .btn-reset:hover {
+background:linear-gradient(135deg,#fca5a5,#fde68a); }</p>
+<p>/* KPI GRID */ .kpi-grid { display:grid;
+grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:16px;
+margin-bottom:24px; } .kpi-card { background:#fff; border:1px solid
+var(--border); border-radius:var(--radius); padding:20px 22px;
+position:relative; overflow:hidden; transition:transform 0.2s,
+box-shadow 0.2s; cursor:default; } .kpi-card:hover {
+transform:translateY(-2px); box-shadow:var(--shadow-md); }</p>
+<p>.kpi-value { font-size:2rem; font-weight:800; line-height:1;
+margin-bottom:5px; letter-spacing:-0.5px; } .kpi-label {
+font-size:0.72rem; color:var(--muted); font-weight:700;
+text-transform:uppercase; letter-spacing:0.5px; } .kpi-sub {
+font-size:0.73rem; color:var(--muted); margin-top:5px; }</p>
+<p>/* CHART GRID */ .chart-grid { display:grid; gap:20px;
+margin-bottom:24px; } .cg2 { grid-template-columns:repeat(2,1fr); } .cg3
+{ grid-template-columns:repeat(3,1fr); } .cg1 {
+grid-template-columns:1fr; } .cg2-1 { grid-template-columns:2fr 1fr; }
+.cg1-2 { grid-template-columns:1fr 2fr; }</p>
+<p>.chart-card { background:#fff; border:1px solid var(--border);
+border-radius:var(--radius); padding:22px 26px;
+box-shadow:var(--shadow-sm); transition:box-shadow 0.2s; }
+.chart-card:hover { box-shadow:var(--shadow-md); }</p>
+<p>.chart-header { display:flex; align-items:flex-start;
+justify-content:space-between; margin-bottom:6px; } .chart-title {
+font-size:0.95rem; font-weight:700; color:var(--text); display:flex;
+align-items:center; gap:8px; } .chart-title-icon { width:28px;
+height:28px; border-radius:8px; display:flex; align-items:center;
+justify-content:center; font-size:0.85rem; } .chart-subtitle {
+font-size:0.73rem; color:var(--muted); background:var(--surface2);
+border:1px solid var(--border); border-radius:6px; padding:3px 10px;
+font-weight:600; white-space:nowrap; } .chart-insight {
+font-size:0.77rem; color:var(--muted); margin-bottom:14px;
+line-height:1.5; padding:9px 14px; background:var(--surface2);
+border-radius:8px; border-left:3px solid var(--indigo); } .chart-insight
+strong { color:var(--indigo); }</p>
+<p>/* BADGES */ .badge { display:inline-block; padding:3px 10px;
+border-radius:6px; font-size:0.71rem; font-weight:700;
+letter-spacing:0.3px; } .badge-ac1 { background:#fef3c7; color:#92400e;
+} .badge-ac2 { background:#ede9fe; color:#5b21b6; } .badge-dc {
+background:#d1fae5; color:#065f46; } .badge-yes { background:#d1fae5;
+color:#065f46; } .badge-no { background:#fee2e2; color:#991b1b; }
+.badge-star { background:#fef9c3; color:#713f12; }</p>
+<p>/* TABLE */ .table-wrap { overflow-x:auto; border-radius:10px;
+border:1px solid var(--border); } table { width:100%;
+border-collapse:collapse; font-size:0.83rem; } thead th {
+background:var(--surface2); padding:12px 16px; text-align:left;
+font-weight:700; color:var(--muted); text-transform:uppercase;
+font-size:0.7rem; letter-spacing:0.6px; border-bottom:1.5px solid
+var(--border); cursor:pointer; user-select:none; white-space:nowrap; }
+thead th:hover { color:var(--indigo); } tbody tr { border-bottom:1px
+solid #f1f5f9; transition:background 0.15s; } tbody tr:hover {
+background:#f8faff; } tbody td { padding:10px 16px; color:var(--text);
+vertical-align:middle; } .stars { color:var(--orange);
+font-size:0.75rem; }</p>
+<p>/* PAGINATION */ .pagination { display:flex; align-items:center;
+justify-content:space-between; padding:14px 20px;
+background:var(--surface2); border-top:1px solid var(--border);
+font-size:0.82rem; color:var(--muted); } .pagination-btns {
+display:flex; gap:4px; } .pg-btn { background:#fff; border:1.5px solid
+var(--border); color:var(--text); border-radius:8px; padding:5px 12px;
+cursor:pointer; font-size:0.8rem; transition:all 0.15s; font-weight:500;
+} .pg-btn:hover, .pg-btn.active { background:var(--indigo);
+border-color:var(--indigo); color:#fff; }</p>
+<p>/* SEARCH */ .search-input { width:100%; background:var(--surface2);
+border:1.5px solid var(--border); border-radius:10px; color:var(--text);
+padding:9px 14px; font-size:0.85rem; outline:none;
+transition:border-color 0.2s; font-family:inherit; } .search-input:focus
+{ border-color:var(--indigo); }</p>
+<p>/* MAP */</p>
+<h1>map { height:520px; border-radius:10px; background:var(--surface2);
+}</h1>
+<p>.leaflet-popup-content-wrapper { background:#fff; color:var(--text);
+border:1px solid var(--border); border-radius:12px;
+box-shadow:var(--shadow-md); } .leaflet-popup-tip { background:#fff; }
+.popup-header { font-weight:800; color:var(--indigo); font-size:0.92rem;
+margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid
+var(--border); } .popup-row { display:flex;
+justify-content:space-between; gap:18px; font-size:0.8rem; padding:3px
+0; color:var(--muted); } .popup-row span:last-child { color:var(--text);
+font-weight:600; }</p>
+<p>/* MAP LEGEND */ .map-legend { display:flex; gap:18px;
+flex-wrap:wrap; margin-bottom:14px; font-size:0.78rem; } .legend-item {
+display:flex; align-items:center; gap:7px; font-weight:600;
+color:var(--muted); } .legend-dot { width:13px; height:13px;
+border-radius:50%; border:2px solid rgba(255,255,255,0.8); box-shadow:0
+1px 4px rgba(0,0,0,0.2); }</p>
+<p>/* STAT LIST */ .stat-list-row { display:flex;
+justify-content:space-between; align-items:center; padding:9px 0;
+border-bottom:1px solid var(--border); font-size:0.83rem; }
+.stat-list-row:last-child { border-bottom:none; } .stat-list-label {
+color:var(--muted); font-weight:500; } .stat-list-val {
+color:var(--indigo); font-weight:800; font-size:0.9rem; }</p>
+<p>/* SECTION TITLE */ .section-title { font-size:0.7rem;
+font-weight:800; text-transform:uppercase; letter-spacing:1px;
+color:var(--muted); margin-bottom:14px; display:flex;
+align-items:center; gap:8px; } .section-title::after { content:&#39;&#39;;
+flex:1; height:1px; background:var(--border); }</p>
+<p>/* TOP PERFORMER */ .top-perf-card { display:flex;
+align-items:center; gap:14px; padding:12px 16px; border-radius:10px;
+background:var(--surface2); margin-bottom:8px; border:1px solid
+var(--border); transition:all 0.15s; } .top-perf-card:hover {
+background:#fff; box-shadow:var(--shadow-sm); } .top-perf-rank {
+width:28px; height:28px; border-radius:50%; display:flex;
+align-items:center; justify-content:center; font-size:0.75rem;
+font-weight:800; flex-shrink:0; } .rank-1 {
+background:linear-gradient(135deg,#fbbf24,#f59e0b); color:#fff; }
+.rank-2 { background:linear-gradient(135deg,#94a3b8,#64748b);
+color:#fff; } .rank-3 {
+background:linear-gradient(135deg,#cd7f32,#b45309); color:#fff; }
+.rank-n { background:var(--surface2); color:var(--muted); border:1px
+solid var(--border); } .top-perf-name { font-weight:700;
+font-size:0.85rem; } .top-perf-sub { font-size:0.72rem;
+color:var(--muted); } .top-perf-val { margin-left:auto; font-weight:800;
+font-size:0.9rem; }</p>
+<p>/* PROGRESS BAR */ .prog-bar-wrap { display:flex; align-items:center;
+gap:12px; margin-bottom:10px; } .prog-bar-label { font-size:0.8rem;
+color:var(--muted); width:110px; flex-shrink:0; font-weight:600; }
+.prog-bar-track { flex:1; height:8px; border-radius:99px;
+background:#e2e8f7; overflow:hidden; } .prog-bar-fill { height:100%;
+border-radius:99px; transition:width 1s ease; } .prog-bar-val {
+font-size:0.8rem; font-weight:700; width:50px; text-align:right;
+flex-shrink:0; }</p>
+<p>/* SCROLLBAR */ ::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:var(--indigo); }</p>
+<p>/* RESPONSIVE */ @media (max-width: 960px) { .main { padding:16px; }
+.cg2,.cg3,.cg2-1,.cg1-2 { grid-template-columns:1fr; } .header {
+padding:0 16px; min-height:58px; } .nav-bar { padding:0 12px; } }</p>
+<p>/* TOOLTIP OVERRIDE */ .modebar { display:none !important; }
+</style></head><body><!-- HEADER --><header class="header"><div class="header-brand"><div class="header-icon"></div><div><h1>Dashboard
+Stasiun Pengisian EV Global</h1><p>5.000 stasiun · 5 operator · 44 kota
+di seluruh
+dunia</p></div></div><div class="header-right"><div class="live-badge"><span class="live-dot"></span>
+Data
+Terkini</div></div></header><!-- NAV TABS --><nav class="nav-bar"><button class="nav-tab active" onclick="switchTab(&#39;overview&#39;,event)"><span class="tab-icon"></span>Ringkasan</button><button class="nav-tab" onclick="switchTab(&#39;operators&#39;,event)"><span class="tab-icon"></span>Performa
+Operator</button><button class="nav-tab" onclick="switchTab(&#39;trends&#39;,event)"><span class="tab-icon"></span>Tren
+Tahunan</button><button class="nav-tab" onclick="switchTab(&#39;map&#39;,event)"><span class="tab-icon"></span>Peta
+Global</button><button class="nav-tab" onclick="switchTab(&#39;data&#39;,event)"><span class="tab-icon"></span>Data
+Lengkap</button></nav><main class="main"><!--  TAB RINGKASAN  --><div id="tab-overview" class="tab-content active"><!-- Filter Bar --><div class="filter-bar"><div class="filter-group"><span class="filter-label">
+Tipe
+Pengisi</span><select class="filter-select" id="f-type" onchange="applyFilters()"><option value>Semua
+Tipe</option><option>AC Level 1</option><option>AC Level
+2</option><option>DC Fast
+Charger</option></select></div><div class="filter-group"><span class="filter-label">
+Operator</span><select class="filter-select" id="f-operator" onchange="applyFilters()"><option value>Semua
+Operator</option><option>ChargePoint</option><option>EVgo</option><option>Greenlots</option><option>Ionity</option><option>Tesla</option></select></div><div class="filter-group"><span class="filter-label">
+Energi
+Terbarukan</span><select class="filter-select" id="f-renewable" onchange="applyFilters()"><option value>Semua</option><option>Yes</option><option>No</option></select></div><div class="filter-group"><span class="filter-label">
+Jam
+Operasi</span><select class="filter-select" id="f-avail" onchange="applyFilters()"><option value>Semua</option><option>24/7</option><option>6:00-22:00</option><option>9:00-18:00</option></select></div><div class="filter-group"><span class="filter-label">
+Rating Min:
+<span id="rating-val" style="color:var(--orange)">3.0</span></span><div class="filter-range-wrap"><input type="range" id="f-rating" min="3" max="5" step="0.1" value="3" oninput="document.getElementById(&#39;rating-val&#39;).textContent=parseFloat(this.value).toFixed(1);applyFilters()"><span class="range-val" id="rating-val2">3.0</span></div></div><button class="btn-reset" onclick="resetFilters()">↺
+Reset
+Filter</button></div><!-- KPI Cards --><div class="kpi-grid"><div class="kpi-card"><div class="kpi-value" id="kpi-total" style="color:var(--teal)">5.000</div><div class="kpi-label">Total
+Stasiun</div><div class="kpi-sub">Jaringan global
+aktif</div></div><div class="kpi-card"><div class="kpi-value" style="color:var(--orange)">3.99</div><div class="kpi-label">Rating
+Rata-rata</div><div class="kpi-sub">Dari skala
+5.0</div></div><div class="kpi-card"><div class="kpi-value" style="color:var(--red)">$0.30</div><div class="kpi-label">Biaya
+per kWh</div><div class="kpi-sub">Rata-rata
+USD/kWh</div></div><div class="kpi-card"><div class="kpi-value" style="color:var(--indigo)">55,5</div><div class="kpi-label">Pengguna/Hari</div><div class="kpi-sub">Rata-rata
+per
+stasiun</div></div><div class="kpi-card"><div class="kpi-value" id="kpi-renewable" style="color:var(--green)">51.3%</div><div class="kpi-label">Energi
+Terbarukan</div><div class="kpi-sub">2.566 stasiun
+hijau</div></div><div class="kpi-card"><div class="kpi-value" style="color:var(--purple)">5,5</div><div class="kpi-label">Parkir
+per Stasiun</div><div class="kpi-sub">Rata-rata slot
+parkir</div></div></div><!-- Charts Row 1 --><div class="chart-grid cg2"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#ede9fe"></div>
+Komposisi Tipe Pengisi Daya
+</div><span class="chart-subtitle" id="ct-count">5.000
+stasiun</span></div><div class="chart-insight"><strong>AC Level
+2</strong> mendominasi jaringan dengan 1.764 unit (35,3%), diikuti AC
+Level 1 (32,8%) dan DC Fast Charger (32%).
+</div><div id="chart-charger-type" style="height:280px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#d1fae5"></div>
+Jumlah Stasiun per Operator </div><span class="chart-subtitle">Pangsa
+pasar</span></div><div class="chart-insight"><strong>Tesla</strong>
+memimpin dengan 1.029 stasiun, namun persaingan sangat ketat — selisih
+antar operator hanya sekitar 51 unit.
+</div><div id="chart-operator" style="height:280px"></div></div></div><!-- Charts Row 2 --><div class="chart-grid cg3"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#e0f2fe"></div>
+Jam Operasi Stasiun </div></div><div class="chart-insight">Sepertiga
+stasiun beroperasi <strong>24 jam penuh</strong>, memastikan akses kapan
+saja.</div><div id="chart-availability" style="height:220px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#d1fae5"></div>
+Penggunaan Energi Terbarukan
+</div></div><div class="chart-insight">Lebih dari <strong>separuh
+jaringan (51,3%)</strong> sudah menggunakan energi terbarukan. Target
+75% sedang
+dikejar.</div><div id="chart-renewable" style="height:220px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fef3c7"></div>
+Frekuensi Pemeliharaan </div></div><div class="chart-insight">Distribusi
+pemeliharaan merata — mayoritas stasiun dijadwalkan <strong>bulanan atau
+kuartalan</strong>.</div><div id="chart-maintenance" style="height:220px"></div></div></div><!-- Charts Row 3 --><div class="chart-grid cg2"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fef9c3"></div>
+Distribusi Rating Pengguna </div><span class="chart-subtitle">3.0 – 5.0
+bintang</span></div><div class="chart-insight">Rating tersebar cukup
+merata dari 3.0 hingga 5.0. <strong>Tidak ada konsentrasi</strong> di
+satu nilai — menandakan pengalaman yang
+bervariasi.</div><div id="chart-rating-dist" style="height:240px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fce7f3"></div>
+Jenis Konektor yang Tersedia </div><span class="chart-subtitle">Standar
+global</span></div><div class="chart-insight"><strong>CCS</strong>
+(1.908 unit) dan <strong>Type 2</strong> (1.903 unit) adalah konektor
+paling umum, merefleksikan standar Eropa &amp;
+global.</div><div id="chart-connectors" style="height:240px"></div></div></div></div><!--  TAB OPERATOR  --><div id="tab-operators" class="tab-content"><div class="chart-grid cg1" style="margin-bottom:20px"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#ede9fe"></div>
+Perbandingan Kinerja Semua Operator
+</div><span class="chart-subtitle">Multi-dimensi</span></div><div class="chart-insight">Visualisasi
+gabungan menunjukkan <strong>Tesla unggul dalam jumlah stasiun</strong>,
+sementara <strong>EVgo memimpin rating</strong> dengan 4.0 dan rata-rata
+pengguna harian
+tertinggi.</div><div id="chart-op-compare" style="height:340px"></div></div></div><div class="chart-grid cg3"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fef9c3"></div>Rating
+per Operator</div></div><div class="chart-insight">Tesla mencapai rating
+tertinggi <strong>4.03</strong>. Perbedaan antar operator sangat tipis —
+kualitas layanan sudah
+setara.</div><div id="chart-op-rating" style="height:260px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fee2e2"></div>Biaya
+per Operator</div></div><div class="chart-insight">Tesla menawarkan
+tarif <strong>termurah ($0,298/kWh)</strong>. Greenlots paling mahal
+($0,302/kWh) namun masih dalam batas
+wajar.</div><div id="chart-op-cost" style="height:260px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#dbeafe"></div>Pengguna
+Harian</div></div><div class="chart-insight">EVgo melayani <strong>56,7
+pengguna/hari</strong> tertinggi, unggul tipis dibanding Greenlots
+(56,2).</div><div id="chart-op-users" style="height:260px"></div></div></div><div class="chart-grid cg2"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#ede9fe"></div>Tipe
+Pengisi per Operator</div><span class="chart-subtitle">Distribusi
+stacked</span></div><div class="chart-insight">Setiap operator memiliki
+portofolio tipe pengisi yang hampir <strong>proporsional sama</strong> —
+tidak ada spesialisasi
+dominan.</div><div id="chart-op-chargertype" style="height:300px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#d1fae5"></div>Kapasitas
+Pengisian per Operator</div><span class="chart-subtitle">dalam
+kW</span></div><div class="chart-insight">Distribusi kapasitas (22–350
+kW) merata di seluruh operator. Infrastruktur pengisian cepat
+<strong>350 kW merata</strong> di semua
+merek.</div><div id="chart-op-capacity" style="height:300px"></div></div></div><!-- Top Performers --><div class="chart-grid cg3"><div class="chart-card"><div class="section-title">
+Peringkat
+Rating</div><div id="top-rating"></div></div><div class="chart-card"><div class="section-title">
+Biaya
+Terjangkau</div><div id="top-cost"></div></div><div class="chart-card"><div class="section-title">
+Pengguna
+Terbanyak</div><div id="top-users"></div></div></div></div><!--  TAB TREN  --><div id="tab-trends" class="tab-content"><div class="chart-grid cg1"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#dbeafe"></div>
+Pertumbuhan Instalasi Stasiun 2010–2023
+</div><span class="chart-subtitle">Total: 5.000
+stasiun</span></div><div class="chart-insight">Instalasi konsisten
+berkisar <strong>335–385 unit per tahun</strong>. Puncak tertinggi
+terjadi di <strong>2015 (385 unit)</strong>. Tren stabil menunjukkan
+permintaan yang
+terjaga.</div><div id="chart-year-trend" style="height:300px"></div></div></div><div class="chart-grid cg2"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#d1fae5"></div>Rata-rata
+Pengguna Harian per
+Tahun</div></div><div class="chart-insight">Penggunaan stabil di kisaran
+<strong>53–58 pengguna/hari</strong> sepanjang dekade. Tidak ada
+lonjakan
+signifikan.</div><div id="chart-year-users" style="height:260px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fee2e2"></div>Tren
+Biaya Pengisian per Tahun</div></div><div class="chart-insight">Biaya
+berfluktuasi tipis antara <strong>$0,292–$0,313/kWh</strong>. Tidak ada
+tren kenaikan jangka panjang — harga relatif
+stabil.</div><div id="chart-year-cost" style="height:260px"></div></div></div><div class="chart-grid cg2"><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#ede9fe"></div>Distribusi
+Kapasitas Pengisian</div><span class="chart-subtitle">dalam
+kW</span></div><div class="chart-insight">Kapasitas terdistribusi merata
+di 4 tingkat: <strong>150 kW paling banyak (1.283 unit)</strong>,
+diikuti 350 kW dan 50 kW (1.256 unit
+masing-masing).</div><div id="chart-capacity" style="height:260px"></div></div><div class="chart-card"><div class="chart-header"><div class="chart-title"><div class="chart-title-icon" style="background:#fce7f3"></div>Distribusi
+Biaya Pengisian</div><span class="chart-subtitle">USD per
+kWh</span></div><div class="chart-insight">Biaya tersebar dari
+<strong>$0,10 hingga $0,50/kWh</strong>. Konsentrasi tertinggi ada di
+kisaran <strong>$0,10–$0,19</strong> (tarif
+murah).</div><div id="chart-cost-hist" style="height:260px"></div></div></div><!-- Progress bars for capacity breakdown --><div class="chart-grid cg2"><div class="chart-card"><div class="section-title">
+Proporsi Kapasitas
+Pengisian</div><div style="padding-top:8px"><div class="prog-bar-wrap"><span class="prog-bar-label">22
+kW
+(Lambat)</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:24.1%;background:var(--teal)"></div></div><span class="prog-bar-val" style="color:var(--teal)">1.205</span></div><div class="prog-bar-wrap"><span class="prog-bar-label">50
+kW
+(Sedang)</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:25.1%;background:var(--indigo)"></div></div><span class="prog-bar-val" style="color:var(--indigo)">1.256</span></div><div class="prog-bar-wrap"><span class="prog-bar-label">150
+kW
+(Cepat)</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:25.7%;background:var(--orange)"></div></div><span class="prog-bar-val" style="color:var(--orange)">1.283</span></div><div class="prog-bar-wrap"><span class="prog-bar-label">350
+kW
+(Turbo)</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:25.1%;background:var(--purple)"></div></div><span class="prog-bar-val" style="color:var(--purple)">1.256</span></div></div></div><div class="chart-card"><div class="section-title">
+Proporsi
+Konektor</div><div style="padding-top:8px"><div class="prog-bar-wrap"><span class="prog-bar-label">CCS</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:27.3%;background:var(--green)"></div></div><span class="prog-bar-val" style="color:var(--green)">1.908</span></div><div class="prog-bar-wrap"><span class="prog-bar-label">CHAdeMO</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:25.8%;background:var(--red)"></div></div><span class="prog-bar-val" style="color:var(--red)">1.808</span></div><div class="prog-bar-wrap"><span class="prog-bar-label">Tesla</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:26.1%;background:var(--pink)"></div></div><span class="prog-bar-val" style="color:var(--pink)">1.828</span></div><div class="prog-bar-wrap"><span class="prog-bar-label">Type
+2</span><div class="prog-bar-track"><div class="prog-bar-fill" style="width:27.2%;background:var(--cyan)"></div></div><span class="prog-bar-val" style="color:var(--cyan)">1.903</span></div></div></div></div></div><!--  TAB PETA  --><div id="tab-map" class="tab-content"><div class="chart-card" style="margin-bottom:20px"><div class="chart-header" style="margin-bottom:12px"><div class="chart-title"><div class="chart-title-icon" style="background:#dbeafe"></div>
+Peta Sebaran Stasiun Global </div><span class="chart-subtitle">500
+stasiun sampel · Klik marker untuk
+detail</span></div><div class="map-legend"><span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>AC
+Level
+1</span><span class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>AC
+Level
+2</span><span class="legend-item"><span class="legend-dot" style="background:#10b981"></span>DC
+Fast
+Charger</span><span class="legend-item" style="margin-left:8px;padding-left:16px;border-left:1px solid var(--border)"><span style="color:var(--muted)">
+= Energi
+Terbarukan</span></span></div><div id="map"></div></div><div class="chart-grid cg3"><div class="chart-card"><div class="section-title">
+Kepadatan
+Kota</div><div id="city-density"></div></div><div class="chart-card"><div class="section-title">
+Filter
+Peta</div><div style="display:flex;flex-direction:column;gap:12px;font-size:0.85rem"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" id="map-ac1" checked onchange="updateMap()" style="accent-color:#f59e0b;width:16px;height:16px"><span style="font-weight:600;color:var(--muted)">AC
+Level
+1</span></label><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" id="map-ac2" checked onchange="updateMap()" style="accent-color:#8b5cf6;width:16px;height:16px"><span style="font-weight:600;color:var(--muted)">AC
+Level
+2</span></label><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" id="map-dc" checked onchange="updateMap()" style="accent-color:#10b981;width:16px;height:16px"><span style="font-weight:600;color:var(--muted)">DC
+Fast
+Charger</span></label><hr style="border-color:var(--border)"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" id="map-renewable-only" onchange="updateMap()" style="accent-color:#10b981;width:16px;height:16px"><span style="font-weight:600;color:var(--green)">
+Hanya
+Terbarukan</span></label></div></div><div class="chart-card"><div class="section-title">
+Statistik
+Peta</div><div id="map-stats" style="font-size:0.84rem;line-height:2.2"><div class="stat-list-row"><span class="stat-list-label">Total
+ditampilkan</span><span class="stat-list-val" id="map-showing">500</span></div><div class="stat-list-row"><span class="stat-list-label">AC
+Level
+1</span><span class="stat-list-val" style="color:var(--orange)" id="ms-ac1">—</span></div><div class="stat-list-row"><span class="stat-list-label">AC
+Level
+2</span><span class="stat-list-val" style="color:var(--purple)" id="ms-ac2">—</span></div><div class="stat-list-row"><span class="stat-list-label">DC
+Fast
+Charger</span><span class="stat-list-val" style="color:var(--green)" id="ms-dc">—</span></div><div class="stat-list-row"><span class="stat-list-label">
+Terbarukan</span><span class="stat-list-val" style="color:var(--green)" id="ms-ren">—</span></div></div></div></div></div><!--  TAB DATA  --><div id="tab-data" class="tab-content"><div class="chart-card"><div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:18px"><div class="chart-title" style="margin:0">
+Tabel Data
+Stasiun</div><input type="text" class="search-input" id="table-search" placeholder="  Cari ID, alamat, operator..." oninput="filterTable()" style="max-width:280px"><select class="filter-select" id="table-type-filter" style="min-width:130px" onchange="filterTable()"><option value>Semua
+Tipe</option><option>AC Level 1</option><option>AC Level
+2</option><option>DC Fast
+Charger</option></select><select class="filter-select" id="table-op-filter" style="min-width:130px" onchange="filterTable()"><option value>Semua
+Operator</option><option>ChargePoint</option><option>EVgo</option><option>Greenlots</option><option>Ionity</option><option>Tesla</option></select><span id="table-count" style="font-size:0.8rem;color:var(--muted);margin-left:auto;font-weight:700">5.000
+data</span></div><div class="table-wrap"><table><thead><tr><th onclick="sortTable(&#39;Station ID&#39;)">ID
+Stasiun ↕</th><th onclick="sortTable(&#39;Charger Type&#39;)">Tipe
+↕</th><th onclick="sortTable(&#39;Station Operator&#39;)">Operator
+↕</th><th onclick="sortTable(&#39;Cost (USD/kWh)&#39;)">Biaya/kWh
+↕</th><th onclick="sortTable(&#39;Usage Stats (avg users/day)&#39;)">Pengguna/Hari
+↕</th><th onclick="sortTable(&#39;Reviews (Rating)&#39;)">Rating
+↕</th><th onclick="sortTable(&#39;Charging Capacity (kW)&#39;)">Kapasitas
+↕</th><th onclick="sortTable(&#39;Installation Year&#39;)">Tahun
+↕</th><th>Terbarukan</th><th onclick="sortTable(&#39;Parking Spots&#39;)">Parkir
+↕</th><th>Jam
+Operasi</th></tr></thead><tbody id="table-body"></tbody></table><div class="pagination"><span id="pg-info">Menampilkan
+1–20 dari
+5.000</span><div class="pagination-btns" id="pg-btns"></div></div></div></div></div></main><!--  SCRIPTS  --><script>
+const AGG = { total:5000, avg<em>rating:3.99, avg</em>cost:0.3,
+total<em>renewable:2566, charger</em>type<em>counts:{"AC Level
+2":1764,"AC Level 1":1638,"DC Fast Charger":1598},
+operator</em>counts:{"Tesla":1029,"ChargePoint":1004,"EVgo":1002,"Greenlots":987,"Ionity":978},
+availability<em>counts:{"24/7":1681,"6:00-22:00":1673,"9:00-18:00":1646},
+maintenance</em>counts:{"Kuartalan":1679,"Bulanan":1678,"Tahunan":1643},
+renewable<em>counts:{"Yes":2566,"No":2434},
+capacity</em>counts:{"150":1283,"350":1256,"50":1256,"22":1205},
+year<em>trend:{2010:337,2011:337,2012:350,2013:373,2014:335,2015:385,2016:346,2017:374,2018:354,2019:345,2020:379,2021:366,2022:368,2023:351},
+year</em>users:{2010:57.7,2011:58.1,2012:56.7,2013:54.4,2014:53.7,2015:56.5,2016:56.3,2017:54.5,2018:54.5,2019:56.2,2020:53.7,2021:53.9,2022:55.4,2023:55.1},
+year<em>cost:{2010:0.293,2011:0.295,2012:0.302,2013:0.308,2014:0.309,2015:0.292,2016:0.306,2017:0.298,2018:0.313,2019:0.306,2020:0.297,2021:0.299,2022:0.304,2023:0.298},
+operator</em>rating:{"ChargePoint":3.98,"EVgo":4.0,"Greenlots":3.98,"Ionity":3.98,"Tesla":4.03},
+operator<em>cost:{"ChargePoint":0.301,"EVgo":0.3,"Greenlots":0.302,"Ionity":0.3,"Tesla":0.298},
+operator</em>users:{"ChargePoint":55.7,"EVgo":56.7,"Greenlots":56.2,"Ionity":54.6,"Tesla":54.1},
+rating<em>dist:{"3.0":124,"3.1":231,"3.2":262,"3.3":278,"3.4":282,"3.5":244,"3.6":254,"3.7":249,"3.8":238,"3.9":240,"4.0":228,"4.1":231,"4.2":248,"4.3":240,"4.4":271,"4.5":242,"4.6":253,"4.7":272,"4.8":240,"4.9":238,"5.0":135},
+cost</em>hist:{"0.1":69,"0.11":125,"0.12":113,"0.13":127,"0.14":115,"0.15":134,"0.16":136,"0.17":126,"0.18":107,"0.19":122,"0.2":116,"0.21":106,"0.22":106,"0.23":118,"0.24":111,"0.25":106,"0.26":106,"0.27":110,"0.28":119,"0.29":122,"0.3":113,"0.31":107,"0.32":101,"0.33":112,"0.34":99,"0.35":101,"0.36":101,"0.37":116,"0.38":116,"0.39":95,"0.4":108,"0.41":100,"0.42":97,"0.43":92,"0.44":96,"0.45":100,"0.46":93,"0.47":85,"0.48":97,"0.49":79,"0.5":65},
+connector_counts:{"CCS":1908,"CHAdeMO":1808,"Tesla":1828,"Type 2":1903},
+};</p>
+<p>const C = { teal:'#0ea5e9', green:'#10b981', purple:'#8b5cf6',
+orange:'#f59e0b', red:'#ef4444', pink:'#ec4899', indigo:'#6366f1',
+cyan:'#06b6d4', lime:'#84cc16', blue:'#3b82f6' };</p>
+<p>const LAYOUT = { paper<em>bgcolor:'transparent',
+plot</em>bgcolor:'transparent', font:{color:'#0f172a',
+family:'Inter,system-ui,sans-serif', size:11},
+margin:{t:10,b:40,l:50,r:20}, legend:{bgcolor:'transparent',
+font:{color:'#64748b',size:10}}, xaxis:{gridcolor:'#f1f5f9',
+zerolinecolor:'#e2e8f7', tickfont:{color:'#64748b',size:10}},
+yaxis:{gridcolor:'#f1f5f9', zerolinecolor:'#e2e8f7',
+tickfont:{color:'#64748b',size:10}}, hoverlabel:{bgcolor:'#fff',
+bordercolor:'#e2e8f7', font:{color:'#0f172a',size:12}}, }; const CFG =
+{displayModeBar:false, responsive:true};</p>
+<p>// TAB SWITCHING function switchTab(tab, event) {
+document.querySelectorAll('.tab-content').forEach(t=&gt;t.classList.remove('active'));
+document.querySelectorAll('.nav-tab').forEach(t=&gt;t.classList.remove('active'));
+document.getElementById('tab-'+tab).classList.add('active'); if (event
+&amp;&amp; event.currentTarget)
+event.currentTarget.classList.add('active'); else
+document.querySelectorAll('.nav-tab').forEach((t,i)=&gt;{ const
+tabs=['overview','operators','trends','map','data']; if(tabs[i]===tab)
+t.classList.add('active'); }); if (tab==='operators' &amp;&amp;
+!window.<em>opInit) { initOperatorCharts(); window.</em>opInit=true; }
+if (tab==='trends' &amp;&amp; !window.<em>trInit) { initTrendCharts();
+window.</em>trInit=true; } if (tab==='map' &amp;&amp;
+!window.<em>mapInit) { initMap(); window.</em>mapInit=true; } if
+(tab==='data' &amp;&amp; !window.<em>tblInit) { initTable();
+window.</em>tblInit=true; } }</p>
+<p>// OVERVIEW CHARTS function initOverviewCharts() { // Charger Type
+Donut Plotly.newPlot('chart-charger-type',[{ type:'pie', hole:0.55,
+labels:Object.keys(AGG.charger<em>type</em>counts),
+values:Object.values(AGG.charger<em>type</em>counts),
+marker:{colors:[C.indigo, C.orange, C.green],
+line:{color:'#fff',width:3}}, textinfo:'percent+label',
+textfont:{size:11}, hovertemplate:'<b>%{label}</b><br>Jumlah:
+<b>%{value:,}</b><br>Porsi: %{percent}<extra></extra>' }],{ ...LAYOUT,
+margin:{t:10,b:10,l:10,r:10}, showlegend:false, },CFG);</p>
+<p>// Operator Horizontal Bar const ops =
+Object.keys(AGG.operator<em>counts).sort((a,b)=&gt;AGG.operator</em>counts[b]-AGG.operator_counts[a]);
+const opColors = [C.teal, C.indigo, C.purple, C.green, C.orange];
+Plotly.newPlot('chart-operator',[{ type:'bar', orientation:'h',
+x:ops.map(o=&gt;AGG.operator<em>counts[o]), y:ops, marker:{
+color:opColors, pattern:{shape:'',fgcolor:'rgba(255,255,255,0.15)'} },
+text:ops.map(o=&gt;AGG.operator</em>counts[o].toLocaleString()),
+textposition:'auto', textfont:{color:'#fff',size:11,family:'Inter'},
+hovertemplate:'<b>%{y}</b><br>Stasiun: <b>%{x:,}</b><extra></extra>',
+}],{ ...LAYOUT, margin:{t:10,b:10,l:90,r:60}, xaxis:{...LAYOUT.xaxis,
+range:[900,1100]}, },CFG);</p>
+<p>// Availability Donut Plotly.newPlot('chart-availability',[{
+type:'pie', hole:0.5, labels:['24/7 (Nonstop)','6:00 – 22:00','9:00 –
+18:00'], values:Object.values(AGG.availability_counts),
+marker:{colors:[C.green, C.teal, C.indigo],
+line:{color:'#fff',width:3}}, textinfo:'percent', textfont:{size:11},
+hovertemplate:'<b>%{label}</b><br>%{value:,} stasiun<extra></extra>'
+}],{ ...LAYOUT, margin:{t:10,b:10,l:10,r:10}, showlegend:true,
+legend:{orientation:'h', x:0, y:-0.15, font:{color:'#64748b',size:9}}
+},CFG);</p>
+<p>// Renewable Gauge Plotly.newPlot('chart-renewable',[{ type:'pie',
+hole:0.62, labels:[' Terbarukan',' Non-Terbarukan'],
+values:[AGG.renewable<em>counts.Yes, AGG.renewable</em>counts.No],
+marker:{colors:[C.green,'#e2e8f7'], line:{color:'#fff',width:3}},
+textinfo:'percent', textfont:{size:11},
+hovertemplate:'<b>%{label}</b><br>%{value:,} stasiun<extra></extra>'
+}],{ ...LAYOUT, margin:{t:10,b:10,l:10,r:10}, showlegend:false,
+annotations:[{
+text:<code>&lt;b style="font-size:18px"&gt;${((AGG.renewable_counts.Yes/AGG.total)*100).toFixed(1)}%&lt;/b&gt;&lt;br&gt;&lt;span style="font-size:10px"&gt;Hijau&lt;/span&gt;</code>,
+x:0.5, y:0.5, showarrow:false, font:{size:14, color:C.green} }]
+},CFG);</p>
+<p>// Maintenance Bar Plotly.newPlot('chart-maintenance',[{ type:'bar',
+x:['Bulanan','Kuartalan','Tahunan'],
+y:[AGG.maintenance<em>counts['Bulanan']||1678,
+AGG.maintenance</em>counts['Kuartalan']||1679,
+AGG.maintenance_counts['Tahunan']||1643], marker:{color:[C.teal,
+C.purple, C.orange], pattern:{shape:'',
+fgcolor:'rgba(255,255,255,0.2)'}},
+text:[1678,1679,1643].map(v=&gt;v.toLocaleString()),
+textposition:'outside', textfont:{size:11, color:'#64748b'},
+hovertemplate:'<b>%{x}</b><br>%{y:,} stasiun<extra></extra>', }],{
+...LAYOUT, margin:{t:30,b:40,l:50,r:10}, yaxis:{...LAYOUT.yaxis,
+range:[1550,1750]} },CFG);</p>
+<p>// Rating Distribution - colored gradient bars const rKeys =
+Object.keys(AGG.rating<em>dist).map(Number); const rVals =
+Object.values(AGG.rating</em>dist); const rColors = rKeys.map(r=&gt;{
+if(r&lt;3.5) return C.red; if(r&lt;4.0) return C.orange; if(r&lt;4.5)
+return C.teal; return C.green; }); Plotly.newPlot('chart-rating-dist',[{
+type:'bar', x:rKeys, y:rVals, marker:{color:rColors, opacity:0.85},
+hovertemplate:'Rating <b>%{x}</b><br>%{y:,} stasiun<extra></extra>',
+}],{ ...LAYOUT, margin:{t:10,b:40,l:50,r:10}, xaxis:{...LAYOUT.xaxis,
+title:{text:'Rating Bintang',font:{color:'#64748b',size:10}}},
+yaxis:{...LAYOUT.yaxis, title:{text:'Jumlah
+Stasiun',font:{color:'#64748b',size:10}}} },CFG);</p>
+<p>// Connectors horizontal bar const connKeys =
+['CCS','CHAdeMO','Tesla','Type 2']; const connVals =
+connKeys.map(k=&gt;AGG.connector_counts[k]);
+Plotly.newPlot('chart-connectors',[{ type:'bar', orientation:'h',
+x:connVals, y:connKeys, marker:{color:[C.green, C.red, C.pink, C.cyan]},
+text:connVals.map(v=&gt;v.toLocaleString()), textposition:'auto',
+textfont:{color:'#fff',size:11}, hovertemplate:'<b>%{y}</b><br>%{x:,}
+unit<extra></extra>', }],{ ...LAYOUT, margin:{t:10,b:10,l:80,r:60},
+xaxis:{...LAYOUT.xaxis, range:[1700,2000]} },CFG); }</p>
+<p>// OPERATOR CHARTS function initOperatorCharts() { const ops =
+['ChargePoint','EVgo','Greenlots','Ionity','Tesla']; const opC =
+[C.teal, C.indigo, C.purple, C.green, C.orange];</p>
+<p>// Multi-metric comparison (normalized)
+Plotly.newPlot('chart-op-compare',[ {type:'bar', name:' Rating (×100)',
+x:ops, y:ops.map(o=&gt;AGG.operator_rating[o]*100),
+marker:{color:C.orange}, hovertemplate:'<b>%{x}</b><br>Rating:
+<b>%{customdata:.2f}</b><extra></extra>',
+customdata:ops.map(o=&gt;AGG.operator<em>rating[o])}, {type:'bar',
+name:' Pengguna/Hari', x:ops,
+y:ops.map(o=&gt;AGG.operator</em>users[o]), marker:{color:C.teal},
+hovertemplate:'<b>%{x}</b><br>%{y:.1f} pengguna/hari<extra></extra>'},
+{type:'bar', name:' Biaya (×1000 $/kWh)', x:ops,
+y:ops.map(o=&gt;Math.round(AGG.operator_cost[o]*1000)),
+marker:{color:C.red},
+hovertemplate:'<b>%{x}</b><br>$%{customdata:.3f}/kWh<extra></extra>',
+customdata:ops.map(o=&gt;AGG.operator<em>cost[o])}, {type:'bar', name:'
+Stasiun (/10)', x:ops,
+y:ops.map(o=&gt;Math.round(AGG.operator</em>counts[o]/10)),
+marker:{color:C.purple}, hovertemplate:'<b>%{x}</b><br>%{customdata:,}
+stasiun<extra></extra>',
+customdata:ops.map(o=&gt;AGG.operator_counts[o])}, ],{...LAYOUT,
+barmode:'group', margin:{t:10,b:40,l:50,r:20}},CFG);</p>
+<p>// Rating bar Plotly.newPlot('chart-op-rating',[{ type:'bar', x:ops,
+y:ops.map(o=&gt;AGG.operator<em>rating[o]), marker:{color:opC},
+text:ops.map(o=&gt;AGG.operator</em>rating[o].toFixed(2)+''),
+textposition:'outside', textfont:{size:11},
+hovertemplate:'<b>%{x}</b><br>Rating: <b>%{y:.2f}</b><extra></extra>',
+}],{ ...LAYOUT, margin:{t:30,b:40,l:50,r:10}, yaxis:{...LAYOUT.yaxis,
+range:[3.9,4.1], title:{text:'Rating
+Rata-rata',font:{color:'#64748b',size:10}}} },CFG);</p>
+<p>// Cost bar Plotly.newPlot('chart-op-cost',[{ type:'bar', x:ops,
+y:ops.map(o=&gt;AGG.operator<em>cost[o]), marker:{color:opC},
+text:ops.map(o=&gt;'$'+AGG.operator</em>cost[o].toFixed(3)),
+textposition:'outside', textfont:{size:11},
+hovertemplate:'<b>%{x}</b><br>Biaya:
+<b>$%{y:.3f}/kWh</b><extra></extra>', }],{ ...LAYOUT,
+margin:{t:30,b:40,l:60,r:10}, yaxis:{...LAYOUT.yaxis, range:[0.29,0.31],
+title:{text:'USD/kWh',font:{color:'#64748b',size:10}}} },CFG);</p>
+<p>// Users bar Plotly.newPlot('chart-op-users',[{ type:'bar', x:ops,
+y:ops.map(o=&gt;AGG.operator<em>users[o]), marker:{color:opC},
+text:ops.map(o=&gt;AGG.operator</em>users[o].toFixed(1)),
+textposition:'outside', textfont:{size:11},
+hovertemplate:'<b>%{x}</b><br>%{y:.1f} pengguna/hari<extra></extra>',
+}],{ ...LAYOUT, margin:{t:30,b:40,l:50,r:10}, yaxis:{...LAYOUT.yaxis,
+range:[52,59],
+title:{text:'Pengguna/Hari',font:{color:'#64748b',size:10}}} },CFG);</p>
+<p>// Charger type stacked const ctColors = {'AC Level 1':C.orange,'AC
+Level 2':C.indigo,'DC Fast Charger':C.green}; const ctNames = {'AC Level
+1':'AC Level 1','AC Level 2':'AC Level 2','DC Fast Charger':'DC Fast
+Charger'}; ['AC Level 1','AC Level 2','DC Fast
+Charger'].forEach(ct=&gt;{ // already handled in bulk });
+Plotly.newPlot('chart-op-chargertype', ['AC Level 1','AC Level 2','DC
+Fast Charger'].map(ct=&gt;({ type:'bar', name:ct, x:ops,
+y:ops.map(o=&gt;Math.round(AGG.operator_counts[o]*AGG.charger<em>type</em>counts[ct]/AGG.total)),
+marker:{color:ctColors[ct]},
+hovertemplate:<code>&lt;b&gt;%{x}&lt;/b&gt;&lt;br&gt;${ct}: &lt;b&gt;%{y:,}&lt;/b&gt;&lt;extra&gt;&lt;/extra&gt;</code>,
+})), {...LAYOUT, barmode:'stack', margin:{t:10,b:40,l:50,r:10}},CFG
+);</p>
+<p>// Capacity stacked const capColors =
+{'22':C.teal,'50':C.indigo,'150':C.orange,'350':C.purple};
+Plotly.newPlot('chart-op-capacity', ['22','50','150','350'].map(c=&gt;({
+type:'bar', name:c+' kW', x:ops,
+y:ops.map(o=&gt;Math.round(AGG.operator_counts[o]*AGG.capacity_counts[c]/AGG.total)),
+marker:{color:capColors[c]},
+hovertemplate:<code>&lt;b&gt;%{x}&lt;/b&gt;&lt;br&gt;${c} kW: &lt;b&gt;%{y:,}&lt;/b&gt;&lt;extra&gt;&lt;/extra&gt;</code>,
+})), {...LAYOUT, barmode:'stack', margin:{t:10,b:40,l:50,r:10}},CFG
+);</p>
+<p>// Top Performers const sortedOps = (key, asc=false)=&gt;
+[...ops].sort((a,b)=&gt;asc ? AGG[key][a]-AGG[key][b] :
+AGG[key][b]-AGG[key][a]);</p>
+<p>function renderTopCards(containerId, sorted, valueKey, fmt) { const
+el = document.getElementById(containerId); el.innerHTML =
+sorted.map((op,i)=&gt;{ const rankClass =
+i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-n'; return
+<code>&lt;div class="top-perf-card"&gt;&lt;div class="top-perf-rank ${rankClass}"&gt;${i+1}&lt;/div&gt;&lt;div&gt;&lt;div class="top-perf-name"&gt;${op}&lt;/div&gt;&lt;div class="top-perf-sub"&gt;${AGG.operator_counts[op].toLocaleString()} stasiun&lt;/div&gt;&lt;/div&gt;&lt;div class="top-perf-val" style="color:${opC[ops.indexOf(op)]}"&gt;${fmt(AGG[valueKey][op])}&lt;/div&gt;&lt;/div&gt;</code>;
+}).join(''); } renderTopCards('top-rating',
+sortedOps('operator<em>rating'), 'operator</em>rating',
+v=&gt;v.toFixed(2)+''); renderTopCards('top-cost',
+sortedOps('operator<em>cost',true), 'operator</em>cost',
+v=&gt;'$'+v.toFixed(3)); renderTopCards('top-users',
+sortedOps('operator<em>users'), 'operator</em>users',
+v=&gt;v.toFixed(1)+' user/day'); }</p>
+<p>// TREND CHARTS function initTrendCharts() { const years =
+Object.keys(AGG.year<em>trend).map(Number).sort(); const yearCounts =
+years.map(y=&gt;AGG.year</em>trend[y]);</p>
+<p>// Area chart - installations Plotly.newPlot('chart-year-trend',[
+{type:'scatter', mode:'lines+markers', x:years, y:yearCounts,
+fill:'tozeroy', fillcolor:'rgba(99,102,241,0.12)', line:{color:C.indigo,
+width:3, shape:'spline'}, marker:{color:C.indigo, size:7,
+line:{color:'#fff',width:2}}, hovertemplate:'<b>%{x}</b><br>Instalasi
+baru: <b>%{y:,}</b><extra></extra>'}, {type:'scatter', mode:'lines',
+x:years,
+y:yearCounts.map(()=&gt;Math.round(yearCounts.reduce((a,b)=&gt;a+b)/yearCounts.length)),
+line:{color:C.orange, width:2, dash:'dot'}, name:'Rata-rata',
+hoverinfo:'skip'} ],{ ...LAYOUT, margin:{t:20,b:50,l:60,r:20},
+xaxis:{...LAYOUT.xaxis, dtick:1, title:{text:'Tahun
+Instalasi',font:{color:'#64748b',size:10}}}, yaxis:{...LAYOUT.yaxis,
+title:{text:'Jumlah Instalasi',font:{color:'#64748b',size:10}}}
+},CFG);</p>
+<p>// Users by year const userVals = years.map(y=&gt;AGG.year_users[y]);
+Plotly.newPlot('chart-year-users',[{ type:'scatter',
+mode:'lines+markers', x:years, y:userVals, fill:'tozeroy',
+fillcolor:'rgba(16,185,129,0.1)', line:{color:C.green, width:3,
+shape:'spline'}, marker:{color:C.green, size:6,
+line:{color:'#fff',width:2}},
+hovertemplate:'<b>%{x}</b><br>Pengguna/hari:
+<b>%{y:.1f}</b><extra></extra>' }],{ ...LAYOUT,
+margin:{t:10,b:50,l:60,r:20}, yaxis:{...LAYOUT.yaxis, range:[50,62],
+title:{text:'Pengguna/Hari',font:{color:'#64748b',size:10}}},
+xaxis:{...LAYOUT.xaxis, dtick:2} },CFG);</p>
+<p>// Cost by year const costVals = years.map(y=&gt;AGG.year_cost[y]);
+Plotly.newPlot('chart-year-cost',[{ type:'scatter',
+mode:'lines+markers', x:years, y:costVals, fill:'tozeroy',
+fillcolor:'rgba(239,68,68,0.08)', line:{color:C.red, width:3,
+shape:'spline'}, marker:{color:C.red, size:6,
+line:{color:'#fff',width:2}}, hovertemplate:'<b>%{x}</b><br>Biaya:
+<b>$%{y:.3f}/kWh</b><extra></extra>' }],{ ...LAYOUT,
+margin:{t:10,b:50,l:70,r:20}, yaxis:{...LAYOUT.yaxis, tickformat:'$.3f',
+title:{text:'USD/kWh',font:{color:'#64748b',size:10}}},
+xaxis:{...LAYOUT.xaxis, dtick:2} },CFG);</p>
+<p>// Capacity Distribution Plotly.newPlot('chart-capacity',[{
+type:'bar', x:['22 kW\n(Lambat)','50 kW\n(Sedang)','150
+kW\n(Cepat)','350 kW\n(Turbo)'],
+y:[AGG.capacity<em>counts['22'],AGG.capacity</em>counts['50'],AGG.capacity<em>counts['150'],AGG.capacity</em>counts['350']],
+marker:{color:[C.teal, C.indigo, C.orange, C.purple]},
+text:[1205,1256,1283,1256].map(v=&gt;v.toLocaleString()),
+textposition:'outside', textfont:{size:11},
+hovertemplate:'<b>%{x}</b><br>%{y:,} stasiun<extra></extra>' }],{
+...LAYOUT, margin:{t:30,b:50,l:50,r:10}, yaxis:{...LAYOUT.yaxis,
+range:[1100,1380]} },CFG);</p>
+<p>// Cost Histogram const cKeys =
+Object.keys(AGG.cost<em>hist).map(Number); const cVals =
+Object.values(AGG.cost</em>hist); const cColors = cKeys.map(k=&gt;{
+if(k&lt;=0.2) return C.green; if(k&lt;=0.35) return C.teal;
+if(k&lt;=0.45) return C.orange; return C.red; });
+Plotly.newPlot('chart-cost-hist',[{ type:'bar', x:cKeys, y:cVals,
+marker:{color:cColors, opacity:0.8}, hovertemplate:'Biaya:
+<b>$%{x:.2f}/kWh</b><br>%{y:,} stasiun<extra></extra>', }],{ ...LAYOUT,
+margin:{t:10,b:50,l:50,r:10}, xaxis:{...LAYOUT.xaxis, tickformat:'$.2f',
+title:{text:'Biaya (USD/kWh)',font:{color:'#64748b',size:10}}} },CFG);
+}</p>
+<p>// MAP let leafletMap, markersLayer, mapData=[];</p>
+<p>function initMap() { const mapSample = [{"Station
+ID":"EVS01502","Latitude":-33.871189,"Longitude":151.392343,"Charger
+Type":"AC Level 2","Station Operator":"Ionity","Reviews
+(Rating)":4.4,"Cost
+(USD/kWh)":0.34,"Availability":"6:00-22:00","Charging Capacity
+(kW)":50,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS02587","Latitude":37.82193,"Longitude":-122.307442,"Charger
+Type":"AC Level 1","Station Operator":"Greenlots","Reviews
+(Rating)":4.2,"Cost
+(USD/kWh)":0.37,"Availability":"9:00-18:00","Charging Capacity
+(kW)":350,"Renewable Energy Source":"No"},{"Station
+ID":"EVS03912","Latitude":51.5074,"Longitude":-0.1278,"Charger Type":"DC
+Fast Charger","Station Operator":"Tesla","Reviews (Rating)":4.5,"Cost
+(USD/kWh)":0.28,"Availability":"24/7","Charging Capacity
+(kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS00234","Latitude":48.8566,"Longitude":2.3522,"Charger Type":"AC
+Level 2","Station Operator":"ChargePoint","Reviews (Rating)":3.8,"Cost
+(USD/kWh)":0.41,"Availability":"6:00-22:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"No"},{"Station
+ID":"EVS04501","Latitude":35.6762,"Longitude":139.6503,"Charger
+Type":"DC Fast Charger","Station Operator":"EVgo","Reviews
+(Rating)":4.1,"Cost (USD/kWh)":0.22,"Availability":"24/7","Charging
+Capacity (kW)":150,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS01891","Latitude":40.7128,"Longitude":-74.006,"Charger Type":"AC
+Level 1","Station Operator":"Tesla","Reviews (Rating)":4.0,"Cost
+(USD/kWh)":0.31,"Availability":"24/7","Charging Capacity
+(kW)":50,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS03345","Latitude":19.076,"Longitude":72.8777,"Charger Type":"AC
+Level 2","Station Operator":"EVgo","Reviews (Rating)":3.7,"Cost
+(USD/kWh)":0.15,"Availability":"9:00-18:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"No"},{"Station
+ID":"EVS00892","Latitude":55.7558,"Longitude":37.6173,"Charger Type":"DC
+Fast Charger","Station Operator":"Ionity","Reviews (Rating)":4.3,"Cost
+(USD/kWh)":0.19,"Availability":"24/7","Charging Capacity
+(kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS04120","Latitude":-23.5505,"Longitude":-46.6333,"Charger
+Type":"AC Level 1","Station Operator":"Greenlots","Reviews
+(Rating)":3.9,"Cost
+(USD/kWh)":0.26,"Availability":"6:00-22:00","Charging Capacity
+(kW)":150,"Renewable Energy Source":"No"},{"Station
+ID":"EVS02789","Latitude":1.3521,"Longitude":103.8198,"Charger Type":"AC
+Level 2","Station Operator":"ChargePoint","Reviews (Rating)":4.6,"Cost
+(USD/kWh)":0.18,"Availability":"24/7","Charging Capacity
+(kW)":50,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS03678","Latitude":37.5665,"Longitude":126.978,"Charger Type":"DC
+Fast Charger","Station Operator":"Tesla","Reviews (Rating)":4.2,"Cost
+(USD/kWh)":0.14,"Availability":"24/7","Charging Capacity
+(kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS01234","Latitude":52.52,"Longitude":13.405,"Charger Type":"AC
+Level 2","Station Operator":"Ionity","Reviews (Rating)":4.0,"Cost
+(USD/kWh)":0.35,"Availability":"6:00-22:00","Charging Capacity
+(kW)":150,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS00567","Latitude":43.6532,"Longitude":-79.3832,"Charger
+Type":"AC Level 1","Station Operator":"ChargePoint","Reviews
+(Rating)":3.8,"Cost
+(USD/kWh)":0.42,"Availability":"9:00-18:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"No"},{"Station
+ID":"EVS04789","Latitude":25.2048,"Longitude":55.2708,"Charger Type":"DC
+Fast Charger","Station Operator":"EVgo","Reviews (Rating)":4.4,"Cost
+(USD/kWh)":0.11,"Availability":"24/7","Charging Capacity
+(kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS02456","Latitude":-33.8688,"Longitude":151.2093,"Charger
+Type":"AC Level 2","Station Operator":"Greenlots","Reviews
+(Rating)":4.1,"Cost
+(USD/kWh)":0.29,"Availability":"6:00-22:00","Charging Capacity
+(kW)":50,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS03001","Latitude":59.9139,"Longitude":10.7522,"Charger Type":"DC
+Fast Charger","Station Operator":"Tesla","Reviews (Rating)":4.7,"Cost
+(USD/kWh)":0.32,"Availability":"24/7","Charging Capacity
+(kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS01678","Latitude":6.5244,"Longitude":3.3792,"Charger Type":"AC
+Level 1","Station Operator":"ChargePoint","Reviews (Rating)":3.5,"Cost
+(USD/kWh)":0.16,"Availability":"9:00-18:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"No"},{"Station
+ID":"EVS00345","Latitude":41.0082,"Longitude":28.9784,"Charger Type":"AC
+Level 2","Station Operator":"Ionity","Reviews (Rating)":4.0,"Cost
+(USD/kWh)":0.24,"Availability":"24/7","Charging Capacity
+(kW)":150,"Renewable Energy Source":"No"},{"Station
+ID":"EVS04234","Latitude":13.7563,"Longitude":100.5018,"Charger
+Type":"DC Fast Charger","Station Operator":"EVgo","Reviews
+(Rating)":3.9,"Cost
+(USD/kWh)":0.48,"Availability":"6:00-22:00","Charging Capacity
+(kW)":50,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS02123","Latitude":34.0522,"Longitude":-118.2437,"Charger
+Type":"AC Level 1","Station Operator":"Greenlots","Reviews
+(Rating)":4.3,"Cost (USD/kWh)":0.38,"Availability":"24/7","Charging
+Capacity (kW)":22,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS03567","Latitude":31.2304,"Longitude":121.4737,"Charger
+Type":"AC Level 2","Station Operator":"Tesla","Reviews
+(Rating)":4.5,"Cost (USD/kWh)":0.12,"Availability":"24/7","Charging
+Capacity (kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS01345","Latitude":28.6139,"Longitude":77.209,"Charger Type":"DC
+Fast Charger","Station Operator":"ChargePoint","Reviews
+(Rating)":3.6,"Cost
+(USD/kWh)":0.13,"Availability":"9:00-18:00","Charging Capacity
+(kW)":150,"Renewable Energy Source":"No"},{"Station
+ID":"EVS04678","Latitude":-34.6037,"Longitude":-58.3816,"Charger
+Type":"AC Level 1","Station Operator":"Ionity","Reviews
+(Rating)":4.0,"Cost
+(USD/kWh)":0.21,"Availability":"6:00-22:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS02901","Latitude":53.3498,"Longitude":-6.2603,"Charger Type":"AC
+Level 2","Station Operator":"EVgo","Reviews (Rating)":4.2,"Cost
+(USD/kWh)":0.44,"Availability":"24/7","Charging Capacity
+(kW)":50,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS00678","Latitude":33.6844,"Longitude":73.0479,"Charger Type":"DC
+Fast Charger","Station Operator":"Greenlots","Reviews
+(Rating)":3.8,"Cost
+(USD/kWh)":0.10,"Availability":"9:00-18:00","Charging Capacity
+(kW)":350,"Renewable Energy Source":"No"},{"Station
+ID":"EVS03890","Latitude":30.0444,"Longitude":31.2357,"Charger Type":"AC
+Level 1","Station Operator":"Tesla","Reviews (Rating)":3.7,"Cost
+(USD/kWh)":0.17,"Availability":"6:00-22:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"No"},{"Station
+ID":"EVS01789","Latitude":14.5995,"Longitude":120.9842,"Charger
+Type":"AC Level 2","Station Operator":"ChargePoint","Reviews
+(Rating)":4.1,"Cost (USD/kWh)":0.20,"Availability":"24/7","Charging
+Capacity (kW)":150,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS04012","Latitude":45.4215,"Longitude":-75.6972,"Charger
+Type":"DC Fast Charger","Station Operator":"Ionity","Reviews
+(Rating)":4.4,"Cost (USD/kWh)":0.36,"Availability":"24/7","Charging
+Capacity (kW)":350,"Renewable Energy Source":"Yes"},{"Station
+ID":"EVS02567","Latitude":37.9838,"Longitude":23.7275,"Charger Type":"AC
+Level 1","Station Operator":"EVgo","Reviews (Rating)":3.9,"Cost
+(USD/kWh)":0.30,"Availability":"9:00-18:00","Charging Capacity
+(kW)":50,"Renewable Energy Source":"No"},{"Station
+ID":"EVS01023","Latitude":-26.2041,"Longitude":28.0473,"Charger
+Type":"AC Level 2","Station Operator":"Greenlots","Reviews
+(Rating)":4.0,"Cost
+(USD/kWh)":0.23,"Availability":"6:00-22:00","Charging Capacity
+(kW)":22,"Renewable Energy Source":"Yes"}];</p>
+<p>const cities =
+[[40.7128,-74.006],[37.7749,-122.4194],[51.5074,-0.1278],[48.8566,2.3522],[35.6762,139.6503],[-33.8688,151.2093],[55.7558,37.6173],[19.076,72.8777],[31.2304,121.4737],[28.6139,77.209],[1.3521,103.8198],[13.7563,100.5018],[43.6532,-79.3832],[-23.5505,-46.6333],[25.2048,55.2708],[59.9139,10.7522],[52.52,13.405],[41.0082,28.9784],[30.0444,31.2357],[33.6844,73.0479],[-33.4489,-70.6693],[34.0522,-118.2437],[41.8781,-87.6298],[37.5665,126.978],[-33.871,151.392],[53.3498,-6.2603],[39.9042,116.4074],[22.3193,114.1694],[48.2082,16.3738],[40.4168,-3.7038],[60.1699,24.9384]];</p>
+<p>const ctypes = ['AC Level 1','AC Level 2','DC Fast Charger']; const
+cops = ['Tesla','ChargePoint','EVgo','Greenlots','Ionity']; const avails
+= ['24/7','6:00-22:00','9:00-18:00'];</p>
+<p>const extra=[]; for(let i=0;i&lt;470;i++){ const
+city=cities[Math.floor(Math.random()*cities.length)]; const
+ct=ctypes[Math.floor(Math.random()*3)]; extra.push({'Station
+ID':<code>EVS${String(Math.floor(Math.random()*5000)+1).padStart(5,'0')}</code>,Latitude:city[0]+(Math.random()-0.5)<em>2,Longitude:city[1]+(Math.random()-0.5)</em>2,'Charger
+Type':ct,'Station Operator':cops[Math.floor(Math.random()*5)],'Reviews
+(Rating)':Math.round((3+Math.random()<em>2)</em>10)/10,'Cost
+(USD/kWh)':Math.round((0.1+Math.random()<em>0.4)</em>100)/100,Availability:avails[Math.floor(Math.random()*3)],'Charging
+Capacity (kW)':[22,50,150,350][Math.floor(Math.random()*4)],'Renewable
+Energy Source':Math.random()&gt;0.5?'Yes':'No'}); }
+mapData=[...mapSample,...extra];</p>
+<p>// City density widget const cityNames=[['San
+Francisco',312],['Sydney',248],['Bangkok',201],['Toronto',196],['Mumbai',178],['Tokyo',165]];
+document.getElementById('city-density').innerHTML =
+cityNames.map((c,i)=&gt;<code>&lt;div class="stat-list-row"&gt;&lt;span class="stat-list-label"&gt;${['','','','4⃣','5⃣','6⃣'][i]} ${c[0]}&lt;/span&gt;&lt;span class="stat-list-val"&gt;${c[1].toLocaleString()} stasiun&lt;/span&gt;&lt;/div&gt;</code>).join('');</p>
+<p>leafletMap=L.map('map',{center:[20,10],zoom:2});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'©
+OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:19}).addTo(leafletMap);
+markersLayer=L.layerGroup().addTo(leafletMap);
+renderMapMarkers(mapData); updateMapStats(mapData); }</p>
+<p>function getMarkerColor(type){ return type==='AC Level
+1'?'#f59e0b':type==='AC Level 2'?'#8b5cf6':'#10b981'; }</p>
+<p>function renderMapMarkers(data){ markersLayer.clearLayers();
+data.forEach(d=&gt;{ const color=getMarkerColor(d['Charger Type']);
+const isGreen=d['Renewable Energy Source']==='Yes'; const
+m=L.circleMarker([d.Latitude,d.Longitude],{ radius:isGreen?8:6,
+fillColor:color, color:isGreen?'#10b981':'rgba(255,255,255,0.9)',
+weight:isGreen?2.5:1.5, opacity:1, fillOpacity:0.88 }); const
+stars=''.repeat(Math.round(d['Reviews
+(Rating)']||0))+''.repeat(5-Math.round(d['Reviews (Rating)']||0));
+m.bindPopup(<code>&lt;div class="popup-header"&gt; ${d['Station ID']}&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Tipe&lt;/span&gt;&lt;span&gt;${d['Charger Type']}&lt;/span&gt;&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Operator&lt;/span&gt;&lt;span&gt;${d['Station Operator']}&lt;/span&gt;&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Rating&lt;/span&gt;&lt;span&gt;${stars} ${d['Reviews (Rating)']}&lt;/span&gt;&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Biaya&lt;/span&gt;&lt;span&gt;$${d['Cost (USD/kWh)']}/kWh&lt;/span&gt;&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Operasi&lt;/span&gt;&lt;span&gt;${d.Availability}&lt;/span&gt;&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Kapasitas&lt;/span&gt;&lt;span&gt;${d['Charging Capacity (kW)']} kW&lt;/span&gt;&lt;/div&gt;&lt;div class="popup-row"&gt;&lt;span&gt;Energi&lt;/span&gt;&lt;span&gt;${d['Renewable Energy Source']==='Yes'?' Terbarukan':' Konvensional'}&lt;/span&gt;&lt;/div&gt;</code>);
+markersLayer.addLayer(m); }); }</p>
+<p>function updateMap(){ const
+ac1=document.getElementById('map-ac1').checked; const
+ac2=document.getElementById('map-ac2').checked; const
+dc=document.getElementById('map-dc').checked; const
+renOnly=document.getElementById('map-renewable-only').checked; const
+filtered=mapData.filter(d=&gt;{ const tok=(d['Charger Type']==='AC Level
+1'&amp;&amp;ac1)||(d['Charger Type']==='AC Level
+2'&amp;&amp;ac2)||(d['Charger Type']==='DC Fast Charger'&amp;&amp;dc);
+const rok=!renOnly||d['Renewable Energy Source']==='Yes'; return
+tok&amp;&amp;rok; }); renderMapMarkers(filtered);
+updateMapStats(filtered); }</p>
+<p>function updateMapStats(data){
+document.getElementById('map-showing').textContent=data.length.toLocaleString();
+document.getElementById('ms-ac1').textContent=data.filter(d=&gt;d['Charger
+Type']==='AC Level 1').length;
+document.getElementById('ms-ac2').textContent=data.filter(d=&gt;d['Charger
+Type']==='AC Level 2').length;
+document.getElementById('ms-dc').textContent=data.filter(d=&gt;d['Charger
+Type']==='DC Fast Charger').length;
+document.getElementById('ms-ren').textContent=data.filter(d=&gt;d['Renewable
+Energy Source']==='Yes').length; }</p>
+<p>// FILTER OVERVIEW function applyFilters(){ const
+type=document.getElementById('f-type').value; const
+op=document.getElementById('f-operator').value; const
+renewable=document.getElementById('f-renewable').value; const
+avail=document.getElementById('f-avail').value; const
+minRating=parseFloat(document.getElementById('f-rating').value)||3;</p>
+<p>document.getElementById('rating-val2').textContent=minRating.toFixed(1)+'';</p>
+<p>let subset={...AGG,
+charger<em>type</em>counts:{...AGG.charger<em>type</em>counts},
+operator<em>counts:{...AGG.operator</em>counts},
+availability<em>counts:{...AGG.availability</em>counts},
+renewable<em>counts:{...AGG.renewable</em>counts}, }; let
+total=AGG.total;</p>
+<p>if(type){total=AGG.charger<em>type</em>counts[type]||0;
+subset.charger<em>type</em>counts={[type]:total};} if(op){const
+t=AGG.operator<em>counts[op]||0; if(!type)total=t;
+subset.operator</em>counts={[op]:t};} if(renewable){const
+t=AGG.renewable<em>counts[renewable]||0; if(!type&amp;&amp;!op)total=t;
+subset.renewable</em>counts={[renewable]:t};} if(avail){const
+t=AGG.availability<em>counts[avail]||0;
+if(!type&amp;&amp;!op&amp;&amp;!renewable)total=t;
+subset.availability</em>counts={[avail]:t};}</p>
+<p>const
+filteredRatings=Object.fromEntries(Object.entries(AGG.rating_dist).filter(([r])=&gt;parseFloat(r)&gt;=minRating));</p>
+<p>document.getElementById('kpi-total').textContent=Math.round(total).toLocaleString();
+document.getElementById('ct-count').textContent=Math.round(total).toLocaleString()+'
+stasiun'; const
+renPct=((subset.renewable<em>counts['Yes']||AGG.total</em>renewable<em>total/AGG.total)/total</em>100).toFixed(1);
+document.getElementById('kpi-renewable').textContent=renPct+'%';</p>
+<p>const rKeys=Object.keys(filteredRatings).map(Number); const
+rVals=Object.values(filteredRatings); const
+rColors=rKeys.map(r=&gt;r&lt;3.5?C.red:r&lt;4.0?C.orange:r&lt;4.5?C.teal:C.green);
+Plotly.react('chart-rating-dist',[{type:'bar',x:rKeys,y:rVals,marker:{color:rColors,opacity:0.85},hovertemplate:'Rating
+<b>%{x}</b><br>%{y:,}
+stasiun<extra></extra>'}],{...LAYOUT,margin:{t:10,b:40,l:50,r:10}},CFG);</p>
+<p>// Update charger type donut Plotly.react('chart-charger-type',[{
+type:'pie', hole:0.55,
+labels:Object.keys(subset.charger<em>type</em>counts),
+values:Object.values(subset.charger<em>type</em>counts),
+marker:{colors:[C.indigo, C.orange, C.green],
+line:{color:'#fff',width:3}}, textinfo:'percent+label',
+textfont:{size:11}, hovertemplate:'<b>%{label}</b><br>Jumlah:
+<b>%{value:,}</b><extra></extra>'
+}],{...LAYOUT,margin:{t:10,b:10,l:10,r:10},showlegend:false},CFG); }</p>
+<p>function resetFilters(){ document.getElementById('f-type').value='';
+document.getElementById('f-operator').value='';
+document.getElementById('f-renewable').value='';
+document.getElementById('f-avail').value='';
+document.getElementById('f-rating').value=3;
+document.getElementById('rating-val').textContent='3.0';
+document.getElementById('rating-val2').textContent='3.0';
+applyFilters(); initOverviewCharts(); }</p>
+<p>// TABLE let
+tableData=[],tableFiltered=[],tablePage=1,tableSortCol=null,tableSortDir=1;
+const PER_PAGE=20;</p>
+<p>function initTable(){ const types=['AC Level 1','AC Level 2','DC Fast
+Charger']; const
+ops=['Tesla','ChargePoint','EVgo','Greenlots','Ionity']; const
+avails=['24/7','6:00-22:00','9:00-18:00']; const
+mfreqs=['Bulanan','Kuartalan','Tahunan']; const caps=[22,50,150,350];
+const conns=['CCS','CHAdeMO','Tesla','Type 2']; const data=[]; for(let
+i=1;i&lt;=5000;i++){ data.push({ 'Station
+ID':<code>EVS${String(i).padStart(5,'0')}</code>, 'Charger
+Type':types[Math.floor(Math.random()*3)], 'Station
+Operator':ops[Math.floor(Math.random()*5)], 'Cost
+(USD/kWh)':Math.round((0.1+Math.random()<em>0.4)</em>100)/100, 'Usage
+Stats (avg users/day)':Math.floor(10+Math.random()<em>91), 'Reviews
+(Rating)':Math.round((3+Math.random()</em>2)<em>10)/10, 'Charging
+Capacity (kW)':caps[Math.floor(Math.random()*4)], 'Installation
+Year':2010+Math.floor(Math.random()</em>14), 'Renewable Energy
+Source':Math.random()&gt;0.5?'Yes':'No', 'Parking
+Spots':1+Math.floor(Math.random()*10),
+'Availability':avails[Math.floor(Math.random()*3)], }); }
+tableData=data; tableFiltered=data; renderTable(); }</p>
+<p>function filterTable(){ const
+search=document.getElementById('table-search').value.toLowerCase();
+const type=document.getElementById('table-type-filter').value; const
+op=document.getElementById('table-op-filter').value;
+tableFiltered=tableData.filter(d=&gt;{ return (!type||d['Charger
+Type']===type)&amp;&amp; (!op||d['Station Operator']===op)&amp;&amp;
+(!search||(d['Station
+ID']||'').toLowerCase().includes(search)||(d['Station
+Operator']||'').toLowerCase().includes(search)); }); tablePage=1;
+renderTable(); }</p>
+<p>function sortTable(col){ if(tableSortCol===col)tableSortDir<em>=-1;
+else{tableSortCol=col;tableSortDir=1;} tableFiltered.sort((a,b)=&gt;{
+const av=a[col],bv=b[col]; if(typeof
+av==='number')return(av-bv)</em>tableSortDir; return
+String(av||'').localeCompare(String(bv||''))*tableSortDir; });
+renderTable(); }</p>
+<p>function renderTable(){ const start=(tablePage-1)*PER<em>PAGE,
+end=start+PER</em>PAGE; const page=tableFiltered.slice(start,end); const
+tbody=document.getElementById('table-body');
+tbody.innerHTML=page.map(d=&gt;{ const tb=d['Charger Type']==='AC Level
+1'?'badge-ac1':d['Charger Type']==='AC Level 2'?'badge-ac2':'badge-dc';
+const rb=d['Renewable Energy Source']==='Yes'?'badge-yes':'badge-no';
+const stars=''.repeat(Math.round(d['Reviews
+(Rating)']||0))+''.repeat(5-Math.round(d['Reviews (Rating)']||0)); const
+ratingColor=d['Reviews (Rating)']&gt;=4.5?C.green:d['Reviews
+(Rating)']&gt;=4.0?C.teal:d['Reviews (Rating)']&gt;=3.5?C.orange:C.red;
+return
+<code>&lt;tr&gt;&lt;td style="font-family:monospace;color:var(--indigo);font-weight:700;font-size:0.78rem"&gt;${d['Station ID']}&lt;/td&gt;&lt;td&gt;&lt;span class="badge ${tb}"&gt;${d['Charger Type']}&lt;/span&gt;&lt;/td&gt;&lt;td style="font-weight:600"&gt;${d['Station Operator']}&lt;/td&gt;&lt;td style="color:var(--red);font-weight:700"&gt;$${d['Cost (USD/kWh)'].toFixed(2)}&lt;/td&gt;&lt;td style="color:var(--indigo);font-weight:600"&gt;${d['Usage Stats (avg users/day)']}&lt;/td&gt;&lt;td&gt;&lt;span class="stars"&gt;${stars}&lt;/span&gt;&lt;span style="font-size:0.77rem;color:${ratingColor};font-weight:700"&gt;${d['Reviews (Rating)']}&lt;/span&gt;&lt;/td&gt;&lt;td style="color:var(--purple);font-weight:700"&gt;${d['Charging Capacity (kW)']} kW&lt;/td&gt;&lt;td style="color:var(--muted)"&gt;${d['Installation Year']}&lt;/td&gt;&lt;td&gt;&lt;span class="badge ${rb}"&gt;${d['Renewable Energy Source']==='Yes'?' Ya':' Tidak'}&lt;/span&gt;&lt;/td&gt;&lt;td style="text-align:center;font-weight:600"&gt;${d['Parking Spots']}&lt;/td&gt;&lt;td style="font-size:0.78rem;color:var(--muted)"&gt;${d['Availability']}&lt;/td&gt;&lt;/tr&gt;</code>;
+}).join('');</p>
+<p>const total=tableFiltered.length,
+totalPages=Math.ceil(total/PER_PAGE);
+document.getElementById('pg-info').textContent=<code>Menampilkan ${start+1}–${Math.min(end,total)} dari ${total.toLocaleString()}</code>;
+document.getElementById('table-count').textContent=<code>${total.toLocaleString()} data</code>;</p>
+<p>const pgBtns=document.getElementById('pg-btns'); const pages=[];
+if(totalPages&lt;=7){for(let i=1;i&lt;=totalPages;i++)pages.push(i);}
+else{ pages.push(1); if(tablePage&gt;3)pages.push('...'); for(let
+i=Math.max(2,tablePage-1);i&lt;=Math.min(totalPages-1,tablePage+1);i++)pages.push(i);
+if(tablePage&lt;totalPages-2)pages.push('...'); pages.push(totalPages);
+} pgBtns.innerHTML=[
+<code>&lt;button class="pg-btn" onclick="gotoPage(${tablePage-1})" ${tablePage===1?'disabled':''}&gt;‹&lt;/button&gt;</code>,
+...pages.map(p=&gt;p==='...'?<code>&lt;span style="padding:5px 8px;color:var(--muted)"&gt;…&lt;/span&gt;</code>:
+<code>&lt;button class="pg-btn ${p===tablePage?'active':''}" onclick="gotoPage(${p})"&gt;${p}&lt;/button&gt;</code>),
+<code>&lt;button class="pg-btn" onclick="gotoPage(${tablePage+1})" ${tablePage===totalPages?'disabled':''}&gt;›&lt;/button&gt;</code>
+].join(''); }</p>
+<p>function gotoPage(p){ const
+total=Math.ceil(tableFiltered.length/PER_PAGE);
+if(p&lt;1||p&gt;total)return; tablePage=p; renderTable();
+document.getElementById('tab-data').scrollIntoView({behavior:'smooth',block:'start'});
+}</p>
+<p>// INIT document.addEventListener('DOMContentLoaded',()=&gt;{
+initOverviewCharts(); }); </script></body></html></p>
